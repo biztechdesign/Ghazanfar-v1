@@ -633,24 +633,25 @@
      container width to the full page width (and lose its rounding) as the
      section scrolls into view, while the copy and phone stay put */
   .app-promo-card{position:relative;isolation:isolate;padding:56px;
-    display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}
+    display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;}
   .app-promo__bg{position:absolute;top:0;bottom:0;left:50%;width:var(--bg-w,100%);transform:translateX(-50%);
     z-index:-1;pointer-events:none;overflow:hidden;background:#155f8f;
     border-radius:var(--bg-r,28px);will-change:width,border-radius;}
   .app-promo__glow{position:absolute;pointer-events:none;width:440px;height:440px;border-radius:50%;
     background:#fff;opacity:.16;filter:blur(90px);right:6%;top:50%;transform:translateY(-50%);}
   .app-promo-visual{position:relative;z-index:1;}
-  .app-promo-visual img{display:block;width:100%;max-width:400px;margin:0 auto;
+  .app-promo-visual img{display:block;width:125%;max-width:none;margin:0 -12.5%;
     transform:scale(.9);transform-origin:center bottom;will-change:transform;}
   @media (prefers-reduced-motion: reduce){ .app-promo-visual img{transform:none;} }
   .app-promo-copy{position:relative;z-index:1;}
   .app-promo-eyebrow{display:inline-flex;align-items:center;gap:8px;color:#fff;font-size:13px;font-weight:800;
     letter-spacing:.06em;text-transform:uppercase;margin-bottom:18px;}
   .app-promo-eyebrow svg{width:16px;height:16px;}
-  .app-promo-copy h2{color:#fff;font-size:var(--h2-size);font-weight:700;line-height:1.2;letter-spacing:-.01em;margin:0 0 16px;max-width:560px;}
+  .app-promo-copy h2{color:#fff;font-size:var(--h2-size);font-weight:700;line-height:1.2;letter-spacing:-.01em;margin:0 0 16px;max-width:640px;text-wrap:balance;}
   .app-promo-copy p{color:rgba(255,255,255,.72);font-size:16px;line-height:1.65;margin:0 0 30px;max-width:440px;}
   @media (max-width:800px){
     .app-promo-card{grid-template-columns:1fr;text-align:center;padding:40px 28px;}
+    .app-promo-visual img{width:100%;max-width:520px;margin:0 auto;}
     .app-promo-copy h2, .app-promo-copy p{margin-left:auto;margin-right:auto;}
     .app-promo-copy .store-row{justify-content:center;}
   }
@@ -926,6 +927,15 @@
     .pcard h3, .pcard p{transition:none;}
     .pcard:hover h3, .pcard:hover p{transform:none;}
   }
+
+  /* app promo image: gentle floating drift + soft glow pulse behind it */
+  .app-promo-visual::before{content:"";position:absolute;left:50%;top:55%;width:70%;aspect-ratio:1;z-index:-1;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,255,255,.28),rgba(255,255,255,0) 68%);transform:translate(-50%,-50%);
+    animation:appGlow 6s ease-in-out infinite alternate;pointer-events:none;}
+  .app-promo-visual{animation:appFloat 7s ease-in-out infinite alternate;}
+  @keyframes appFloat{from{transform:translateY(-8px) rotate(-.6deg);}to{transform:translateY(10px) rotate(.6deg);}}
+  @keyframes appGlow{from{opacity:.55;transform:translate(-50%,-50%) scale(.9);}to{opacity:1;transform:translate(-50%,-50%) scale(1.1);}}
+  @media (prefers-reduced-motion: reduce){ .app-promo-visual, .app-promo-visual::before{animation:none;} }
 </style>
 <script>
   /* Runs before first paint so [data-reveal] only hides content when JS is
@@ -2074,7 +2084,7 @@
     if (!img) return;
     scrollLinkedProgress(visual, function(progress){
       var narrow = matchMedia("(max-width: 700px)").matches;
-      var MIN = narrow ? 0.95 : 0.88, MAX = narrow ? 1.0 : 1.05;
+      var MIN = narrow ? 0.95 : 0.92, MAX = narrow ? 1.0 : 1.08;
       img.style.transform = "scale(" + (MIN + (MAX - MIN) * progress).toFixed(4) + ")";
     });
   })();

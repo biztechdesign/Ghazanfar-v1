@@ -661,16 +661,18 @@
   .newsletter{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;
     padding:28px 32px;border-bottom:1px solid rgba(255,255,255,.1);max-width:1280px;margin:0 auto;}
   .newsletter h3{font-size:26px;font-weight:800;margin:0;}
-  .nl-form{display:flex;max-width:420px;width:100%;}
-  .nl-form input{flex:1;min-height:44px;background:#fff;border:1px solid transparent;border-radius:10px 0 0 10px;
+  .nl-form{display:flex;align-items:stretch;max-width:420px;width:100%;}
+  .nl-form input{flex:1 1 auto;min-width:0;height:48px;box-sizing:border-box;background:#fff;border:1px solid transparent;border-radius:10px 0 0 10px;
     padding:12px 16px;color:var(--ink);font-size:14px;transition:border-color var(--dur-s) var(--ease), background-color var(--dur-s) var(--ease);}
   .nl-form input::placeholder{color:#697586;}
   .nl-form input:focus{outline:none;border-color:var(--gold);background:#fff;}
-  .nl-form button{background:var(--gold);color:var(--gold-ink);border:none;border-radius:0 10px 10px 0;padding:0 22px;min-height:44px;font-weight:700;font-size:15px;
-    display:flex;align-items:center;gap:8px;transition:background-color var(--dur-s) var(--ease), transform var(--dur-s) var(--ease);}
-  .nl-form button:hover{filter:brightness(.94);transform:translateY(-1px);}
-  .nl-form button:active{transform:translateY(0);}
-  @media (prefers-reduced-motion: reduce){ .nl-form input, .nl-form button{transition:none;} .nl-form button:hover{transform:none;} }
+  .nl-form button{background:var(--gold);color:var(--gold-ink);border:none;border-radius:0 10px 10px 0;padding:0 22px;height:48px;box-sizing:border-box;flex:0 0 auto;white-space:nowrap;cursor:pointer;font-weight:700;font-size:15px;
+    display:flex;align-items:center;justify-content:center;gap:8px;transition:background-color var(--dur-s) var(--ease), box-shadow var(--dur-s) var(--ease);}
+  .nl-form button:hover{background:#d9a03a;}
+  .nl-form button:active{background:#b57f1f;}
+  .nl-form button:focus-visible{outline:2px solid #fff;outline-offset:2px;}
+  .nl-form button svg{width:18px;height:18px;flex-shrink:0;}
+  @media (prefers-reduced-motion: reduce){ .nl-form input, .nl-form button{transition:none;} }
   .footer-links-wrap{position:relative;}
   /* full page-width, vertically centered on the links bar — sits behind it,
      so it only shows peeking out past the bar's own rounded edges. */

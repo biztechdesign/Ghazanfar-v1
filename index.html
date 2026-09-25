@@ -180,8 +180,8 @@
   .nav:not(.scrolled) .acct--open{background:#fff;color:var(--navy-dark);border-color:#fff;}
   .nav:not(.scrolled) .acct--open:hover{background:var(--gold);border-color:var(--gold);color:var(--gold-ink);}
   .nav.scrolled{
-    background:rgba(242,242,232,.62);
-    backdrop-filter:blur(16px) saturate(1.6);
+    background:rgba(242,242,232,.86);
+    backdrop-filter:blur(18px) saturate(1.5);
     -webkit-backdrop-filter:blur(16px) saturate(1.6);
     border-bottom-color:var(--line);
     box-shadow:0 4px 20px -8px rgba(16,24,40,.12);
@@ -961,6 +961,10 @@
   .megamenu-col-list a{padding-left:4px;transition:background-color .35s var(--ease), color .35s var(--ease), transform .35s var(--ease);}
   .megamenu-col-list a::before{display:none;}
   .megamenu-col-list a:hover{padding-left:4px;transform:translateX(3px);background:rgba(7,59,50,.05);color:var(--ink);}
+
+  /* readable header text once the bar turns to glass */
+  .nav.scrolled .primary-nav > a, .nav.scrolled .primary-nav > .nav-item > .menu, .nav.scrolled .lang{color:var(--ink);font-weight:600;}
+  .nav.scrolled .primary-nav .chev, .nav.scrolled .lang .chev{opacity:.75;}
 </style>
 <script>
   /* Runs before first paint so [data-reveal] only hides content when JS is

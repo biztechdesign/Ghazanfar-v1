@@ -89,7 +89,10 @@
   }
 
   *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;overflow-x:hidden;}
+  /* horizontal overflow is clipped on the root only; putting it on <body> too makes body a second scroll container (the "inner scrollbar") */
+  html,body{margin:0;padding:0;}
+  html{overflow-x:hidden;}
+  body{overflow-x:visible;}
   body{
     font-family:'Onest',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
     background:var(--page-bg);
